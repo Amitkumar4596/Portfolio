@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { RESUME_DATA } from '../constants';
 import { GraduationCap, Award, Star, Trophy } from 'lucide-react';
@@ -46,7 +47,9 @@ const EducationAndAwards: React.FC = () => {
               <div>
                 <h3 className="text-lg font-bold text-slate-200 group-hover:text-primary-400 transition-colors">{ach.title}</h3>
                 <span className="text-xs text-slate-500 mb-2 block font-mono mt-1">{ach.date}</span>
-                <p className="text-slate-400 text-sm leading-relaxed">{ach.description}</p>
+                {ach.description && (
+                  <p className="text-slate-400 text-sm leading-relaxed">{ach.description}</p>
+                )}
               </div>
             </div>
           ))}

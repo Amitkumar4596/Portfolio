@@ -17,7 +17,7 @@ export const RESUME_DATA: ResumeData = {
   // Using the high-reliability Google Drive hosting link format:
   avatarUrl: "https://lh3.googleusercontent.com/d/13KUBEGMbuz8Rr7CcRzihbDhbcYjQf__F", 
   
-  summary: "AI/ML Engineer with almost 2 years of experience in applied Machine Learning, GenAI, Computer Vision, and NLP. Building production GenAI solutions (RAG, Multi-agent AI, MLOps) using Python, FastAPI, AWS/Azure. Delivered 8+ scalable AI systems processing 1M+ records at 92%+ accuracy, reducing costs by 80-90% through automation.",
+  summary: "AI/ML Engineer with almost 2 years of experience in applied Machine Learning, GenAI, Computer Vision, and NLP. Building production GenAI solutions (RAG, Multi-agent AI, MLOps) using Python, FastAPI, AWS/Azure. Delivered 10+ scalable AI systems processing 1M+ records at 92%+ accuracy, reducing costs by 80-90% through automation.",
   
   // YOU CAN EDIT THE CONTACT TEXT HERE:
   contactDescription: "I'm currently available for work for full-time opportunities. If you have a products/projects that needs some AI magic, I'd love to hear about it.",
@@ -56,11 +56,11 @@ export const RESUME_DATA: ResumeData = {
           description: "Built and deployed AWS hosted Web-scraping pipeline processing 1M+ websites with Playwright/Selenium, Beautiful Soup, Bright Data API, and Asyncio based FastAPI service. Utilized Fine-tuned Azure GPT-4o with Prompt engineering for 95%+ accurate enrichment & cost reduction from MFR-MPN, address enrichment, and data standardization."
         },
         {
-          title: "AutoDeDup: AI-Powered Master Data Quality System",
+          title: "AutoDeDup: AI-Powered Master Data DeDup Quality System",
           description: "Implemented high-performance end-to-end GenAI based system for material/vendor/customer data processed 500K+ records in 2 hours. Utilized multi-model embeddings (AllMiniLM/all-mpnet/Qwen) with DBSCAN clustering and Claude-4 Sonnet validation. Integrated with MySQL MongoDB ETL pipeline via Cron scheduling."
         },
         {
-          title: "AutoExtraction: Intelligent Material Master Extraction",
+          title: "AutoExtraction: Intelligent Material Master Attribute Extraction",
           description: "Designed and implemented intelligent material master pipeline with Claude 3.5/4 Sonnet LLMs and RAG architecture using Pgvector for Semantic match and context injection. Implemented Chain-of-Thought (COT) Prompting and Post-Processing logic ensuring 96%+ accuracy while eliminating 90% of manual data entry effort."
         },
         {
@@ -104,7 +104,7 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       category: "AI Models",
-      skills: ["OpenAI GPT-4o", "Claude 4 Sonnet", "Gemini 2.5 Pro", "Grok 3", "Whisper"]
+      skills: ["OpenAI", "Anthropic", "Gemini", "Grok", "Mistral", "Llama", "Whisper"]
     },
     {
       category: "ML & DL Frameworks",
@@ -112,19 +112,19 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       category: "Backend & APIs",
-      skills: ["FastAPI", "Flask", "GraphQL", "Microservices", "Asyncio", "Playwright", "Selenium", "Beautiful Soup"]
+      skills: ["FastAPI", "Flask", "GraphQL", "Microservices", "Asyncio", "Playwright", "Selenium", "Beautiful Soup", "ZenRows"]
     },
     {
       category: "Vector & Databases",
-      skills: ["MongoDB", "PostgreSQL", "FAISS", "MySQL", "SQLite", "Redis", "SQL"]
+      skills: ["MongoDB", "PostgreSQL", "FAISS", "MySQL", "SQLite", "Redis"]
     },
     {
       category: "Cloud & MLOps",
-      skills: ["Docker", "Kubernetes", "AWS SageMaker", "AWS Lambda", "Azure ML Studio", "GCP", "Apache Airflow"]
+      skills: ["Docker", "AWS", "Azure ML Studio", "GCP"]
     },
     {
       category: "Development Tools",
-      skills: ["Python", "Git", "Pandas", "NumPy", "Jupyter", "Streamlit", "Postman", "Power BI", "Excel"]
+      skills: ["Python", "SQL", "Git", "Pandas", "NumPy", "Jupyter", "Streamlit", "Postman", "Power BI", "Excel"]
     }
   ],
   projects: [
@@ -156,11 +156,6 @@ export const RESUME_DATA: ResumeData = {
       title: "Best Team Award - Verdantis",
       date: "Jan’25",
       description: "Contributed to AI/ML team receiving Best Team Award among all departments for exceptional project execution."
-    },
-    {
-      title: "Interview Placement Co-ordinator",
-      date: "Jun’23 - Jun’24",
-      description: "IIT Bombay Placement Cell. Collaborated with a team of 45+ to successfully place 2100+ students."
     }
   ]
 };

@@ -1,13 +1,20 @@
 import React from 'react';
 import { RESUME_DATA } from '../constants';
-import { Mail, Linkedin, Github, Terminal, Sparkles, UserCircle2 } from 'lucide-react';
+import { Mail, Linkedin, Github, Terminal, Sparkles, UserCircle2, ChevronDown } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const { name, title, summary, contact, avatarUrl } = RESUME_DATA;
 
+  const scrollToNextSection = () => {
+    const educationSection = document.getElementById('education');
+    if (educationSection) {
+      educationSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="about" className="min-h-screen flex items-center pt-20 pb-20 md:pt-0">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+    <section id="about" className="min-h-screen flex items-center justify-center relative pt-20 pb-20 md:pt-0">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center w-full">
         {/* Text Content */}
         <div className="md:col-span-7 space-y-8 order-2 md:order-1">
           <div className="space-y-4">
@@ -110,6 +117,15 @@ const Hero: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Scroll Down Indicator */}
+      <button 
+        onClick={scrollToNextSection}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-primary-400 transition-colors duration-300 animate-bounce cursor-pointer p-2"
+        aria-label="Scroll to next section"
+      >
+        <ChevronDown className="w-8 h-8" />
+      </button>
     </section>
   );
 };
