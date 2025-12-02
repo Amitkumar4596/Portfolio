@@ -1,3 +1,4 @@
+
 import { ResumeData } from './types';
 
 export const RESUME_DATA: ResumeData = {
@@ -17,6 +18,10 @@ export const RESUME_DATA: ResumeData = {
   avatarUrl: "https://lh3.googleusercontent.com/d/13KUBEGMbuz8Rr7CcRzihbDhbcYjQf__F", 
   
   summary: "AI/ML Engineer with almost 2 years of experience in applied Machine Learning, GenAI, Computer Vision, and NLP. Building production GenAI solutions (RAG, Multi-agent AI, MLOps) using Python, FastAPI, AWS/Azure. Delivered 8+ scalable AI systems processing 1M+ records at 92%+ accuracy, reducing costs by 80-90% through automation.",
+  
+  // YOU CAN EDIT THE CONTACT TEXT HERE:
+  contactDescription: "I'm currently available for work for full-time opportunities. If you have a products/projects that needs some AI magic, I'd love to hear about it.",
+  
   contact: {
     phone: "+91-9017170283",
     email: "ak.amit.iitb@gmail.com",
@@ -38,19 +43,19 @@ export const RESUME_DATA: ResumeData = {
       duration: "June 24 – Present",
       projects: [
         {
-          title: "Auto-Enrich: Enterprise Web Intelligence Enrichment",
+          title: "AutoEnrich: Enterprise Web Intelligence Enrichment",
           description: "Built and deployed AWS hosted Web-scraping pipeline processing 1M+ websites with Playwright/Selenium, Beautiful Soup, Bright Data API, and Asyncio based FastAPI service. Utilized Fine-tuned Azure GPT-4o with Prompt engineering for 95%+ accurate enrichment & cost reduction from MFR-MPN, address enrichment, and data standardization."
         },
         {
-          title: "Auto-DeDup AI: AI-Powered Master Data Quality System",
+          title: "AutoDeDup: AI-Powered Master Data Quality System",
           description: "Implemented high-performance end-to-end GenAI based system for material/vendor/customer data processed 500K+ records in 2 hours. Utilized multi-model embeddings (AllMiniLM/all-mpnet/Qwen) with DBSCAN clustering and Claude-4 Sonnet validation. Integrated with MySQL MongoDB ETL pipeline via Cron scheduling."
         },
         {
-          title: "Auto-Extraction: Intelligent Material Master Extraction",
+          title: "AutoExtraction: Intelligent Material Master Extraction",
           description: "Designed and implemented intelligent material master pipeline with Claude 3.5/4 Sonnet LLMs and RAG architecture using Pgvector for Semantic match and context injection. Implemented Chain-of-Thought (COT) Prompting and Post-Processing logic ensuring 96%+ accuracy while eliminating 90% of manual data entry effort."
         },
         {
-          title: "Auto-Doc AI: Multimodal Document Intelligence Platform",
+          title: "AutoDoc: Multimodal Document Intelligence Platform",
           description: "Architected Scalable Cloud-native document intelligence platform using Gemini 2.5 Pro for extraction from invoices, POs, PDFs, CAD images. FastAPI Microservices backend on AWS, implementing OCR preprocessing, structured JSON parsing, vendor normalization, and LLM-powered natural language query interface (SourceIQ)."
         },
         {
@@ -58,7 +63,7 @@ export const RESUME_DATA: ResumeData = {
           description: "Developed multi-model forecasting platform utilized ARIMA, XGBoost, LightGBM, LSTM, Transformers, and LLM based predictions with Speech To Text (STT) search enabled. Delivered advance demand visibility and Equipment Criticality analysis to enable proactive procurement decisions."
         },
         {
-          title: "Marketing Automation: AI-Driven Lead Generation Engine",
+          title: "Marketing Automation: AI-Driven Lead Generation",
           description: "Built marketing automation pipeline with Bright Data API for Web/LinkedIn scraping (5K+ leads/month), ZoomInfo API, Bounceban validation, and AI based personalization by industry/role/context. Reduced efforts by 75%+ and achieved 85% faster outreach."
         }
       ]
@@ -86,11 +91,11 @@ export const RESUME_DATA: ResumeData = {
   skills: [
     {
       category: "GenAI & LLM Techniques",
-      skills: ["Prompt Engineering", "RAG", "Fine-Tuning", "Agentic AI", "LangChain", "LangGraph", "LlamaIndex", "Semantic Kernel", "Chain-of-Thought"]
+      skills: ["Prompt Engineering", "RAG", "Agentic RAG", "Fine-Tuning", "Agentic AI", "LangChain", "LangGraph", "LlamaIndex", "Semantic Kernel", "Chain-of-Thought"]
     },
     {
       category: "AI Models",
-      skills: ["OpenAI GPT-4o", "Claude 3.5 Sonnet", "Gemini 2.5 Pro", "Grok 3", "Whisper"]
+      skills: ["OpenAI GPT-4o", "Claude 4 Sonnet", "Gemini 2.5 Pro", "Grok 3", "Whisper"]
     },
     {
       category: "ML & DL Frameworks",

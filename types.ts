@@ -1,3 +1,4 @@
+
 export interface ContactInfo {
   phone: string;
   email: string;
@@ -45,6 +46,7 @@ export interface ResumeData {
   title: string;
   summary: string;
   avatarUrl: string;
+  contactDescription: string; // Added this field
   contact: ContactInfo;
   education: Education[];
   experience: ExperienceItem[];

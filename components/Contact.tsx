@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Send, Mail, MapPin, Phone, Linkedin, Github } from 'lucide-react';
 import { RESUME_DATA } from '../constants';
@@ -35,8 +36,7 @@ const Contact: React.FC = () => {
         <div>
           <h2 className="text-3xl font-bold text-white mb-6">Let's Work Together</h2>
           <p className="text-slate-400 text-lg mb-10">
-            I'm currently available for freelance work and full-time opportunities. 
-            If you have a project that needs some AI magic, I'd love to hear about it.
+            {RESUME_DATA.contactDescription}
           </p>
           
           <div className="space-y-6">
@@ -109,7 +109,7 @@ const Contact: React.FC = () => {
                 id="name"
                 required
                 className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-600"
-                placeholder="John Doe"
+                placeholder="ABC"
                 value={formState.name}
                 onChange={(e) => setFormState({...formState, name: e.target.value})}
               />
@@ -122,7 +122,7 @@ const Contact: React.FC = () => {
                 id="email"
                 required
                 className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-600"
-                placeholder="john@example.com"
+                placeholder="ABC@gmail.com"
                 value={formState.email}
                 onChange={(e) => setFormState({...formState, email: e.target.value})}
               />
