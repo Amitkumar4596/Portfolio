@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Send, Mail, MapPin, Phone, Linkedin, Github } from 'lucide-react';
+import { Send, Mail, MapPin, Phone, Linkedin, Github, AlertCircle } from 'lucide-react';
 import { RESUME_DATA } from '../constants';
 
 const Contact: React.FC = () => {
@@ -11,20 +11,51 @@ const Contact: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+
+    // Safety check: ensure the user has updated their access key
+    if (!RESUME_DATA.web3FormsAccessKey || RESUME_DATA.web3FormsAccessKey === "YOUR_ACCESS_KEY_HERE") {
+      alert("Setup Required: Please get your free Access Key from web3forms.com and add it to constants.ts");
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate network request
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: RESUME_DATA.web3FormsAccessKey,
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+          subject: `Portfolio Contact from ${formState.name}`
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSent(true);
+        setFormState({ name: '', email: '', message: '' });
+        // Reset success message after 5 seconds
+        setTimeout(() => setIsSent(false), 5000);
+      } else {
+        setError("Something went wrong. Please try again or email me directly.");
+      }
+    } catch (err) {
+      setError("Failed to send message. Please check your internet connection.");
+    } finally {
       setIsSubmitting(false);
-      setIsSent(true);
-      setFormState({ name: '', email: '', message: '' });
-      
-      // Reset success message after 3 seconds
-      setTimeout(() => setIsSent(false), 5000);
-    }, 1500);
+    }
   };
 
   return (
@@ -141,12 +172,19 @@ const Contact: React.FC = () => {
               />
             </div>
 
+            {error && (
+              <div className="flex items-center gap-2 text-red-400 text-sm bg-red-400/10 p-3 rounded-lg border border-red-400/20">
+                <AlertCircle className="w-4 h-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
             <button
               type="submit"
               disabled={isSubmitting || isSent}
               className={`w-full py-4 rounded-lg font-bold text-white transition-all flex items-center justify-center gap-2 ${
                 isSent 
-                  ? 'bg-green-600 hover:bg-green-700' 
+                  ? 'bg-green-600 hover:bg-green-700 cursor-default' 
                   : 'bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-500 hover:to-secondary-500 shadow-lg shadow-primary-500/25'
               }`}
             >

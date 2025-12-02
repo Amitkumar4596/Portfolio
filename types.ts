@@ -46,7 +46,8 @@ export interface ResumeData {
   title: string;
   summary: string;
   avatarUrl: string;
-  contactDescription: string; // Added this field
+  contactDescription: string;
+  web3FormsAccessKey: string; // Added for contact form
   contact: ContactInfo;
   education: Education[];
   experience: ExperienceItem[];

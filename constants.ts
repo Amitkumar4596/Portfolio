@@ -22,6 +22,15 @@ export const RESUME_DATA: ResumeData = {
   // YOU CAN EDIT THE CONTACT TEXT HERE:
   contactDescription: "I'm currently available for work for full-time opportunities. If you have a products/projects that needs some AI magic, I'd love to hear about it.",
   
+  // ==================================================================================
+  // CONTACT FORM SETUP (Free & Permanent):
+  // 1. Go to https://web3forms.com/
+  // 2. Create a form (Use '*' as the domain to allow it to work anywhere).
+  // 3. Copy the Access Key they give you.
+  // 4. Paste it inside the quotes below (replace YOUR_ACCESS_KEY_HERE).
+  // ==================================================================================
+  web3FormsAccessKey: "c5ebcb42-751e-4189-9f9e-9657fece5175", 
+
   contact: {
     phone: "+91-9017170283",
     email: "ak.amit.iitb@gmail.com",
