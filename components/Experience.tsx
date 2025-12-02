@@ -1,6 +1,61 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { RESUME_DATA } from '../constants';
-import { Briefcase, Calendar, ChevronRight } from 'lucide-react';
+import { Calendar, ChevronRight } from 'lucide-react';
+
+interface ProjectProps {
+  project: {
+    title: string;
+    description: string;
+  };
+}
+
+const ProjectAccordion: React.FC<ProjectProps> = ({ project }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div 
+      className={`glass-card rounded-xl transition-all duration-300 overflow-hidden ${
+        isOpen ? 'bg-slate-800/60 ring-1 ring-primary-500/30' : 'hover:bg-slate-800/40'
+      }`}
+    >
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-start gap-3 p-5 text-left group cursor-pointer"
+      >
+        <ChevronRight 
+          className={`w-5 h-5 text-primary-500 mt-1 shrink-0 transition-transform duration-300 ${
+            isOpen ? 'rotate-90' : 'group-hover:translate-x-1'
+          }`} 
+        />
+        <div>
+          <h5 className={`text-lg font-semibold transition-colors ${
+            isOpen ? 'text-primary-400' : 'text-slate-200 group-hover:text-primary-400'
+          }`}>
+            {project.title}
+          </h5>
+          {!isOpen && (
+             <p className="text-slate-500 text-sm mt-1 line-clamp-1">
+               Click to view details...
+             </p>
+          )}
+        </div>
+      </button>
+      
+      <div 
+        className={`grid transition-all duration-300 ease-in-out ${
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="text-slate-400 leading-relaxed text-sm md:text-base pl-11 pr-6 pb-6 border-t border-slate-700/30 pt-4 mt-1 mx-4">
+            {project.description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Experience: React.FC = () => {
   return (
@@ -29,17 +84,9 @@ const Experience: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid gap-4">
+            <div className="grid gap-3">
               {job.projects.map((project, idx) => (
-                <div key={idx} className="glass-card p-6 rounded-xl hover:bg-slate-800/60 transition-colors group/card">
-                  <div className="flex items-start gap-3 mb-2">
-                    <ChevronRight className="w-5 h-5 text-primary-500 mt-1 shrink-0 group-hover/card:translate-x-1 transition-transform" />
-                    <h5 className="text-lg font-semibold text-slate-200">{project.title}</h5>
-                  </div>
-                  <p className="text-slate-400 leading-relaxed text-sm md:text-base pl-8">
-                    {project.description}
-                  </p>
-                </div>
+                <ProjectAccordion key={idx} project={project} />
               ))}
             </div>
           </div>
