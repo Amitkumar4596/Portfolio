@@ -41,17 +41,27 @@ export interface Achievement {
   description: string;
 }
 
+export interface Publication {
+  title: string;
+  authors: string;
+  publishedIn: string;
+  date: string;
+  link: string;
+}
+
 export interface ResumeData {
   name: string;
   title: string;
   summary: string;
   avatarUrl: string;
   contactDescription: string;
-  web3FormsAccessKey: string; // Added for contact form
+  web3FormsAccessKey: string;
   contact: ContactInfo;
   education: Education[];
   experience: ExperienceItem[];
   skills: SkillCategory[];
   projects: Project[];
   achievements: Achievement[];
+  publications: Publication[];
+  coursework: string[];
 }
