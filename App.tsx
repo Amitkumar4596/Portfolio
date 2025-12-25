@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
@@ -9,7 +10,7 @@ import Contact from './components/Contact';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen text-slate-200 selection:bg-primary-500/30 selection:text-primary-200">
+    <div className="min-h-screen text-slate-200 selection:bg-primary-500/30 selection:text-primary-200 animate-in fade-in duration-1000">
       <Navigation />
       
       {/* Main Content Area */}
