@@ -67,11 +67,11 @@ const AIDemoModal: React.FC<AIDemoModalProps> = ({ isOpen, onClose, projectTitle
     
     // Check if key is available
     const key = process.env.API_KEY;
-    if (!key || key === "undefined") {
+    if (!key || key === "undefined" || key === "") {
       addLog("CRITICAL: API_KEY is missing from environment.", "error");
       setError({
         title: "Configuration Error",
-        message: "The API_KEY is missing from Vercel environment variables. Please ensure you have added it in your project settings and redeployed.",
+        message: "The application is missing a valid API_KEY. Please check your Vercel Environment Variables and ensure you have redeployed.",
         code: "MISSING_ENV_VAR"
       });
       setIsLoading(false);
