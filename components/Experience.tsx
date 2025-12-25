@@ -15,10 +15,8 @@ interface ProjectProps {
 const ProjectAccordion: React.FC<ProjectProps> = ({ project, onDemoClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   
-  // Show demo for all "Auto" projects or GenAI projects
-  const hasDemo = project.title.toLowerCase().startsWith('auto') || 
-                  project.title.toLowerCase().includes('genai') ||
-                  project.title.toLowerCase().includes('rag');
+  // Strictly only show demo for AutoEnrich AI
+  const hasDemo = project.title.includes('AutoEnrich AI');
 
   return (
     <div 
@@ -68,7 +66,7 @@ const ProjectAccordion: React.FC<ProjectProps> = ({ project, onDemoClick }) => {
               className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-400 text-slate-950 rounded-lg text-sm font-black uppercase tracking-tighter transition-all group/btn shadow-lg shadow-primary-500/20 active:scale-95"
             >
               <PlayCircle className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
-              Launch AI Pipeline
+              Try AI Demo
               <Sparkles className="w-3 h-3" />
             </button>
           </div>
