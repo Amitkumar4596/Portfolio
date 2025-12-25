@@ -2,18 +2,22 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // Load env file based on `mode` in the current working directory.
-  // Set the third parameter to '' to load all envs regardless of the `VITE_` prefix.
-  // Fix: Property 'cwd' does not exist on type 'Process' - casting to any to access Node.js process.cwd()
+  // Load all environment variables from the system (Vercel) and .env files
+  // The third argument '' allows loading variables without the VITE_ prefix
+  // Fix: Property 'cwd' does not exist on type 'Process'. Casting to any for compatibility in all build environments.
   const env = loadEnv(mode, (process as any).cwd(), '');
   
   return {
     plugins: [react()],
     define: {
-      // This ensures process.env.API_KEY is replaced with the actual key during build
+      // This explicitly replaces "process.env.API_KEY" in your code 
+      // with the actual key value during the build process.
       'process.env.API_KEY': JSON.stringify(env.API_KEY),
     },
+    build: {
+      outDir: 'dist',
+      sourcemap: false
+    }
   };
 });

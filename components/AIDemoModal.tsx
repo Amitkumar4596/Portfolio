@@ -30,7 +30,6 @@ const AIDemoModal: React.FC<AIDemoModalProps> = ({ isOpen, onClose, projectTitle
   const [error, setError] = useState<{ title: string; message: string; code?: string } | null>(null);
   const [logs, setLogs] = useState<{ msg: string; type: 'info' | 'success' | 'error' | 'system' | 'ws' }[]>([]);
   const [result, setResult] = useState<EnrichmentResponse | null>(null);
-  const [viewMode, setViewMode] = useState<'table' | 'json'>('table');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -66,12 +65,12 @@ const AIDemoModal: React.FC<AIDemoModalProps> = ({ isOpen, onClose, projectTitle
     addLog("AutoEnrich AI: Initializing pipeline...", 'system');
     
     // Check if key is available
-    const key = process.env.API_KEY;
-    if (!key || key === "undefined" || key === "") {
-      addLog("CRITICAL: API_KEY is missing from environment.", "error");
+    // Fix: Using process.env.API_KEY directly as required by @google/genai guidelines
+    if (!process.env.API_KEY || process.env.API_KEY === "undefined") {
+      addLog("CRITICAL: API_KEY is missing from build environment.", "error");
       setError({
         title: "Configuration Error",
-        message: "The application is missing a valid API_KEY. Please check your Vercel Environment Variables and ensure you have redeployed.",
+        message: "The application is missing a valid API_KEY. Please ensure you have added it to Vercel Environment Variables AND redeployed the project.",
         code: "MISSING_ENV_VAR"
       });
       setIsLoading(false);
@@ -90,10 +89,11 @@ const AIDemoModal: React.FC<AIDemoModalProps> = ({ isOpen, onClose, projectTitle
     }
 
     try {
-      const ai = new GoogleGenAI({ apiKey: key });
+      // Fix: Follow @google/genai guidelines to use process.env.API_KEY directly in client initialization
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: `Enrich this item: "${currentInput}". Context: ${projectDescription}. You must output valid JSON. If it's a company, provide details like industry and headquarters. If it's a product, provide specifications and manufacturer.`,
+        contents: `Enrich this item: "${currentInput}". Context: ${projectDescription}. Output JSON.`,
         config: {
           responseMimeType: "application/json",
           responseSchema: {
@@ -130,20 +130,11 @@ const AIDemoModal: React.FC<AIDemoModalProps> = ({ isOpen, onClose, projectTitle
       setResult(data);
       addLog("Process complete. Data synthesized successfully.", "success");
     } catch (err: any) {
-      const errorMessage = err?.message || 'Unknown network error during pipeline execution';
+      const errorMessage = err?.message || 'Network error during execution';
       addLog(`PIPELINE FAIL: ${errorMessage}`, "error");
-      
-      let errorTitle = "Pipeline Execution Error";
-      let errorMsg = "The data enrichment engine failed to synthesize the request. Please check the technical logs.";
-
-      if (errorMessage.includes("API key")) {
-        errorTitle = "Authentication Failed";
-        errorMsg = "The provided Gemini API Key is invalid or expired.";
-      }
-
       setError({
-        title: errorTitle,
-        message: errorMsg,
+        title: "Pipeline Execution Error",
+        message: errorMessage.includes("API key") ? "Invalid API Key." : "The engine failed to synthesize data.",
         code: "AGENT_RUNTIME_EXC"
       });
     } finally {
