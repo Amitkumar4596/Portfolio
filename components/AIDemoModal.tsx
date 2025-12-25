@@ -63,27 +63,39 @@ const AIDemoModal: React.FC<AIDemoModalProps> = ({ isOpen, onClose, projectTitle
     setError(null);
     setLogs([]);
     
+    addLog("AutoEnrich AI: Initializing AWS-hosted Web Intelligence pipeline...", 'system');
+    
+    if (!process.env.API_KEY) {
+      addLog("FATAL: API_KEY environment variable is missing.", "error");
+      setError({
+        title: "Configuration Error",
+        message: "The application is missing a valid API_KEY. Please check your Vercel Environment Variables.",
+        code: "MISSING_ENV_VAR"
+      });
+      setIsLoading(false);
+      return;
+    }
+
     const steps = [
-      { msg: "AutoEnrich AI: Initializing AWS-hosted Web Intelligence pipeline...", type: 'system' },
       { msg: "WSS: Establishing encrypted tunnel to Bright Data gateway...", type: 'ws' },
       { msg: "Browser Scraping: Spawning Unlocker for CAPTCHA solving...", type: 'info' },
       { msg: "SerpAPI: Fetching manufacturer & corporate nodes...", type: 'info' },
       { msg: "Beautiful Soup: Extracting DOM blobs via FastAPI...", type: 'info' },
-      { msg: "Asyncio: Routing parsed data to Fine-tuned GPT-4o context...", type: 'ws' },
+      { msg: "Asyncio: Routing parsed data to Fine-tuned Gemini context...", type: 'ws' },
       { msg: "Enriching attributes at 95%+ precision target...", type: 'system' },
-      { msg: "Cost Optimization: Validating 60% reduction in token overhead...", type: 'success' },
     ] as const;
 
     for (const step of steps) {
       addLog(step.msg, step.type);
-      await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 200));
+      await new Promise(resolve => setTimeout(resolve, 200 + Math.random() * 200));
     }
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+      // Create fresh instance per guidelines
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: `Enrich: "${currentInput}". Context: ${projectDescription}. STRICT JSON. If Company: MUST include "Address", "Email", "Phone", "Website". If Product: Technical Specs.`,
+        contents: `Enrich this item: "${currentInput}". Use your knowledge based on this project context: ${projectDescription}. Output strictly as JSON. If it's a company, include headquarters, industry, and contact info. If it's a product, include technical specifications and manufacturer.`,
         config: {
           responseMimeType: "application/json",
           responseSchema: {
@@ -114,28 +126,38 @@ const AIDemoModal: React.FC<AIDemoModalProps> = ({ isOpen, onClose, projectTitle
         }
       });
 
-      const data = JSON.parse(response.text || '{}') as EnrichmentResponse;
+      if (!response.text) throw new Error("Empty response from AI engine");
+
+      const data = JSON.parse(response.text) as EnrichmentResponse;
       setResult(data);
-      addLog("Enrichment complete. manual effort reduced by 80%.", "success");
+      addLog("Enrichment complete. Manual effort reduced by 80%.", "success");
     } catch (err: any) {
-      const errMsg = err?.message || '';
+      console.error("Pipeline Error:", err);
+      const errorMessage = err?.message || 'Unknown runtime error';
+      
+      addLog(`FATAL: ${errorMessage}`, "error");
+
       let errorDetail = {
         title: "Pipeline Execution Error",
-        message: "The data enrichment engine failed to synthesize the request.",
+        message: "The data enrichment engine failed to synthesize the request. Check technical logs for details.",
         code: "AGENT_RUNTIME_EXC"
       };
 
-      if (errMsg.includes("429") || errMsg.toLowerCase().includes("quota") || errMsg.toLowerCase().includes("limit")) {
+      if (errorMessage.includes("429") || errorMessage.toLowerCase().includes("quota")) {
         errorDetail = {
           title: "API Quota Exceeded",
-          message: "The system has exceeded the allowed Gemini API token quota. Please wait for the quota to reset.",
+          message: "The system has exceeded the allowed Gemini API token quota.",
           code: "ERR_TOKEN_LIMIT_EXCEEDED"
+        };
+      } else if (errorMessage.includes("401") || errorMessage.includes("API key")) {
+        errorDetail = {
+          title: "Authentication Failed",
+          message: "The API Key provided is invalid or has expired.",
+          code: "ERR_AUTH_FAILED"
         };
       }
 
       setError(errorDetail);
-      addLog(`FATAL: ${errorDetail.code}`, "error");
-      console.error(err);
     } finally {
       setIsLoading(false);
     }
