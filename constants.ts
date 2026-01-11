@@ -4,30 +4,13 @@ export const RESUME_DATA: ResumeData = {
   name: "Amit Kumar",
   title: "AI/ML Engineer",
   
-  // ==================================================================================
-  // HOW TO USE YOUR OWN PHOTO FROM GOOGLE DRIVE:
-  // 1. Upload your photo to Google Drive.
-  // 2. Right-click the file -> Share -> Share -> Change to "Anyone with the link".
-  // 3. Copy the link. It looks like: https://drive.google.com/file/d/1AbC-12345_XYZ/view?usp=sharing
-  // 4. Copy ONLY the ID part (e.g., "1AbC-12345_XYZ").
-  // 5. Use this format: https://lh3.googleusercontent.com/d/YOUR_FILE_ID_HERE
-  // ==================================================================================
-  
   // Using the high-reliability Google Drive hosting link format:
   avatarUrl: "https://lh3.googleusercontent.com/d/13KUBEGMbuz8Rr7CcRzihbDhbcYjQf__F", 
   
   summary: "AI/ML Engineer with almost 2 years of experience in applied Machine Learning, GenAI, Computer Vision, and NLP. Building production GenAI solutions (RAG, Multi-agent AI, LLMOps) using Python, FastAPI, AWS/Azure. Delivered 10+ AI systems processed 10M+ records at 92%+ accuracy, reducing costs by 70-90% through automation.",
   
-  // YOU CAN EDIT THE CONTACT TEXT HERE:
   contactDescription: "I'm currently available for work for full-time opportunities. If you have a products/projects that needs some AI magic, I'd love to hear about it.",
   
-  // ==================================================================================
-  // CONTACT FORM SETUP (Free & Permanent):
-  // 1. Go to https://web3forms.com/
-  // 2. Create a form (Use '*' as the domain to allow it to work anywhere).
-  // 3. Copy the Access Key they give you.
-  // 4. Paste it inside the quotes below (replace YOUR_ACCESS_KEY_HERE).
-  // ==================================================================================
   web3FormsAccessKey: "c5ebcb42-751e-4189-9f9e-9657fece5175", 
 
   contact: {
@@ -51,47 +34,75 @@ export const RESUME_DATA: ResumeData = {
       duration: "June 24 – Present",
       projects: [
         {
-          title: "AutoEnrich AI: Web Intelligence Data Enrichment",
-          description: "Architected AWS-hosted Web scraping pipeline processing 1M+ websites using Bright Data API (Browser Scraping, Unlocker for CAPTCHA solving, SerpAPI) via WebSocket protocol, Beautiful Soup for HTML parsing, and asyncio-based FastAPI microservices. System takes MFR-MPN inputs, auto searches and scrapes, utilize Fine tuned Azure GPT-4o with optimized Prompt engineering to enrich product attributes at 95%+ Precision, reducing 60%+ cost, and 80%+ manual efforts."
+          title: "AutoEnrich AI: Web Scraping & Intelligent Data Enrichment",
+          points: [
+            "Built AWS pipeline processing 1M+ websites using Bright Data API (Browser Scraping, Unlocker, SerpAPI) via WSS.",
+            "Architected Asyncio FastAPI microservices for concurrent processing with Beautiful Soup for HTML parsing.",
+            "Automated MFR-MPN, Address enrichment using Fine-tuned Azure GPT-4o with Dynamic CoT Prompting.",
+            "Achieved 96%+ Precision, reducing 55%+ operational cost and 80%+ manual effort."
+          ]
         },
         {
-          title: "AutoDeDup AI: Master Data Quality Self-Learning Deduplication System",
-          description: "Built & deployed closed-loop feedback MLOps pipeline with automated Contrastive fine-tuning on customer-labeled duplicate pairs, processed 5M+ records via SFTP-based ETL with APScheduler cron jobs, sentence-transformers (AllMiniLM/all-mpnet/Qwen) embeddings, Qdrant Vector DB with HNSW indexing, normalized number matching, DBSCAN clustering, and Claude-4 Sonnet validation, achieving 95%+ accuracy while reducing 70%+ cost & manual efforts."
+          title: "AutoDeDup AI: Contrastive Learning Master Data Deduplication",
+          points: [
+            "Built & Deployed Closed Loop MLOps pipeline processing 5M+ records via SFTP ETL & APScheduler cron jobs.",
+            "Utilized Qdrant VectorDB (HNSW) with Contrastive Fine Tuning embeddings (all-mpnet/Qwen) on labeled pairs.",
+            "Integrated DBSCAN clustering & normalized number matching with Claude Sonnet validation.",
+            "Achieved 92%+ Precision, reducing 85%+ operational costs and 90%+ manual review efforts."
+          ]
         },
         {
-          title: "AutoSpecs: Intelligent Attribute Extraction",
-          description: "Design and implemented RAG based extraction pipeline with Claude 3.5/4 Sonnet and utilizing pgvector for Semantic match and Few Shots context injection, implementing Chain-of-Thought (COT) Prompting, Closed-Loop feedback and Post-Processing logic ensuring 96%+ F1 Score while eliminating 85% of manual data extraction efforts."
+          title: "AutoSpecs AI: RAG Based Attribute Extraction System",
+          points: [
+            "Architected LlamaIndex RAG Attribute Extraction pipeline utilizing Claude Sonnet & pgvector for Semantic matching.",
+            "Integrated Cross-Encoder Reranking, Few-Shot CoT prompting & Closed-Loop feedback to minimize Hallucinations.",
+            "Achieved 96%+ F1 Score, eliminating 85+% of manual extraction efforts."
+          ]
         },
         {
           title: "AutoDoc AI: Multimodal Intelligence Document Processing",
-          description: "Architected Scalable Cloud-native document intelligence platform using Gemini 2.5 Pro for extraction from (invoices, POs, PDFs, CAD images), with FastAPI Microservices backend on AWS, implementing OCR preprocessing,structured JSON parsing, vendor normalization, and LLM-powered natural language query interface (SourceIQ) translating plain English to MongoDB aggregations, processing 100K+ documents monthly at 94%+ accuracy while reducing processing time by 95%."
+          points: [
+            "Architected Scalable Cloud-native AWS platform with FastAPI microservices & Gemini 2.5 Pro thinking enabled.",
+            "Automated extraction from Invoices, POs, PDFs, CAD images via OCR, JSON parsing & Vendor normalization.",
+            "Built SourceIQ: An LLM interface translating natural language queries to MongoDB aggregations & Graph generation.",
+            "Processed 100K+ documents/month at 94%+ Accuracy, reducing processing time by 95%+."
+          ]
         },
         {
           title: "MRO-360: Predictive Maintenance & Demand Forecasting",
-          description: "Developed multi-model forecasting platform utilized ARIMA, XGBoost, LightGBM, LSTM, Transformers, and LLM based predictions with Speech To Text (STT) search enabled, MongoDB raw data storage, and PostgreSQL for processed forecasts, delivering advance demand visibility and Equipment Criticality analysis to enable proactive procurement decisions, reduce emergency orders, and optimize maintenance scheduling."
-        },
-        {
-          title: "Marketing Automation: AI-Driven Lead Generation",
-          description: "Built marketing automation pipeline with Bright Data API for Web/LinkedIn scraping (5K+ leads/month), ZoomInfo API for enrichment, Bounceban validation, AI based personalization by industry/role/context, QuickMail API campaigns, and Streamlit UI, reducing efforts by 75%+ and 85% faster outreach."
+          points: [
+            "Developed multi-model platform utilizing TFT, XGBoost, LSTM, ARIMA, Prophet & LLM based predictions.",
+            "Integrated Speech To Text (STT), MongoDB (raw), PostgreSQL (processed) & Redis Pub/Sub for real-time updates.",
+            "Enabled Equipment Criticality analysis for proactive procurement, reducing emergency orders & optimizing maintenance."
+          ]
         }
       ]
     },
     {
-      role: "Data-Science Intern",
+      role: "Artificial Intelligence Intern",
       company: "TCS R&D",
       duration: "May 2023 – July 2023",
       projects: [
         {
           title: "Agricultural Field Boundary Detection using SAM",
-          description: "Assessment of META’s AI Segment-Anything Model (SAM) for Field Boundary Detection and Comparison with ResU-Net, Time series of MSAVI2 and Deep Learning Models."
+          points: [
+            "Assessment of META’s AI Segment-Anything Model (SAM) for Field Boundary Detection.",
+            "Comparison with ResU-Net, Time series of MSAVI2 and Deep Learning Models."
+          ]
         },
         {
           title: "Vision Transformer Optimization for Geospatial Segmentation",
-          description: "Optimized model architecture with pre-trained Vision Transformer (ViT), CLIP, self cross attention, Pre-processed Japan, Brazil image dataset to Segment-Geospatial Model trained on 11M+ Images, 1B+ Masks."
+          points: [
+            "Optimized model architecture with pre-trained Vision Transformer (ViT), CLIP, self cross attention.",
+            "Pre-processed Japan, Brazil image dataset to Segment-Geospatial Model trained on 11M+ Images, 1B+ Masks."
+          ]
         },
         {
           title: "Multi-Model Agricultural Boundary Extraction",
-          description: "Developed 6 Distinct models: GT Agri-Mask & Area Threshold utilized geopandas, leafmap library & QGIS and Achieved highest Modified Recall 0.80, Recall 0.98; IoU Threshold: 0.5, significant improvement for Japan."
+          points: [
+            "Developed 6 Distinct models: GT Agri-Mask & Area Threshold utilized geopandas, leafmap library & QGIS.",
+            "Achieved highest Modified Recall 0.80, Recall 0.98; IoU Threshold: 0.5, significant improvement for Japan."
+          ]
         }
       ]
     }

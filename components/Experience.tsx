@@ -1,13 +1,12 @@
-
 import React, { useState } from 'react';
 import { RESUME_DATA } from '../constants';
-import { Calendar, ChevronRight, PlayCircle, Sparkles, Cpu } from 'lucide-react';
+import { Calendar, ChevronRight, PlayCircle, Sparkles, Cpu, CheckCircle2 } from 'lucide-react';
 import AIDemoModal from './AIDemoModal';
 
 interface ProjectProps {
   project: {
     title: string;
-    description: string;
+    points: string[];
   };
   onDemoClick: (title: string, desc: string) => void;
 }
@@ -61,7 +60,7 @@ const ProjectAccordion: React.FC<ProjectProps> = ({ project, onDemoClick }) => {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                onDemoClick(project.title, project.description);
+                onDemoClick(project.title, project.points.join(' '));
               }}
               className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-400 text-slate-950 rounded-lg text-sm font-black uppercase tracking-tighter transition-all group/btn shadow-lg shadow-primary-500/20 active:scale-95"
             >
@@ -79,9 +78,16 @@ const ProjectAccordion: React.FC<ProjectProps> = ({ project, onDemoClick }) => {
         }`}
       >
         <div className="overflow-hidden">
-          <p className="text-slate-400 leading-relaxed text-sm md:text-base pl-11 pr-6 pb-6 border-t border-slate-700/30 pt-4 mt-1 mx-4">
-            {project.description}
-          </p>
+          <div className="text-slate-400 leading-relaxed text-sm md:text-base border-t border-slate-700/30 px-6 pb-6 pt-4 mt-1 mx-4">
+            <ul className="space-y-3">
+              {project.points.map((point, idx) => (
+                <li key={idx} className="flex gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-primary-500/70 shrink-0 mt-1" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ export interface ExperienceItem {
   duration: string;
   projects: {
     title: string;
-    description: string;
+    points: string[];
   }[];
 }
 
