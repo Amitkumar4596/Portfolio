@@ -18,7 +18,7 @@ const Skills: React.FC = () => {
     <section id="skills" className="py-20 scroll-mt-10">
       <h2 className="text-3xl font-bold text-white mb-12 flex items-center gap-3">
         <span className="w-12 h-1 bg-secondary-500 rounded-full"></span>
-        Technical Arsenal
+        Technical Skills & Expertise
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

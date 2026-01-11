@@ -1,4 +1,3 @@
-
 import { ResumeData } from './types';
 
 export const RESUME_DATA: ResumeData = {
@@ -120,7 +119,7 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       category: "Cloud & MLOps",
-      skills: ["Docker", "AWS", "MLOps", "Azure (ML Studio, OpenAI, Cognitive Services)", "A/B Testing"]
+      skills: ["Docker", "AWS", "MLOps", "Azure (ML Studio, OpenAI)", "A/B Testing"]
     },
     {
       category: "Development Tools",
